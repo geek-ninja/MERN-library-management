@@ -39,6 +39,13 @@
     will-change: transform;
     cursor: pointer;
 }
+.librarian_update_form{
+    padding: 0 20px;
+}
+.librarian_update_form > form {
+    display: flex;
+    flex-direction: column;
+}
 .adminAuth{
     padding:  0 10px;
 }
@@ -60,10 +67,51 @@
 .MuiFormControl-root{
     margin: 5px 0 !important;
 }
-.admin{
-    background-color: #D4F2FD;
+.adminLibrarian{
+    padding: 0 10px;
+}
+.adminLibrarian > form{
+    display: flex;
+    flex-direction: column;
 }
 
+.adminStudent > form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.admin{
+    background-color: #D4F2FD;
+    margin: 20px 10px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.admin_dashboard{
+    display: flex;
+    flex-direction: column;
+}
+
+.admin_dashboard_student{
+    margin: 5px 10px;
+    width: 100%;
+}
+.admin_dashboard_student > h2{
+    margin: 10px 0;
+}
+.admin_dashboard_librarian{
+    margin: 5px 10px;
+    width: 100%;
+}
+.admin_dashboard_librarian > h2{
+    margin: 10px 0;
+}
+.student_update_form{
+    padding: 0 10px;
+}
+.student_update_form > form{
+    display: flex;
+    flex-direction: column;
+}
 table {
     border-collapse: collapse;
     width: 100%;
@@ -74,7 +122,56 @@ table {
     text-align: center;
     padding: 8px;
   }
-  
-  tr:nth-child(even) {
-    background-color: #D6EEEE;
-  }
+
+.students_search,.librarian_search{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 5px 0;
+}
+.students_search_input, .librarian_search_input{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 2px 5px;
+    border: solid 1px #223E80;
+}
+.students_search_input > input , .librarian_search_input > input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+.students,.librarians{
+    background-color: #ffff;
+    padding: 20px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
+    max-height: 250px;
+    overflow: auto;
+}
+
+  @media only screen and (max-width: 768px) {
+    .admin{
+        padding: 5px 5px;
+    }
+    /* .students,.librarians{
+        width: 290px;
+        overflow-x: scroll;
+    } */
+    .admin_dashboard{
+        flex-wrap: wrap;
+    }
+    .admin_dashboard_librarian{
+        margin: 5px 0;
+    }
+    .admin_dashboard_student{
+        margin: 5px 0;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+}

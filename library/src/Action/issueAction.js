@@ -47,3 +47,30 @@ export const updateIssueReturned = (id) => async (dispatch) => {
         console.log(error)
     }
 }
+
+export const updateIssueFine = (id,fine) => async (dispatch) => {
+    try {
+        const {data} = await api.updateIssueFine(id,fine)
+        dispatch({ type:UPDATE_ISSUE,payload:data})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const issueFineClear = (id) => async (dispatch) => {
+    try {
+        const {data} = await api.issueFineClear(id)
+        dispatch({ type:UPDATE_ISSUE,payload:data})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// export const issueLibFineClear = (id) => async (dispatch) => {
+//     try {
+//         const {data} = await api.issueLibFineClear(id)
+//         dispatch({ type:UPDATE_ISSUE,payload:data})
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }

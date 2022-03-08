@@ -1,9 +1,10 @@
-import {LOG_ADMIN,CREATE_STUDENT,CREATE_LIBRARIAN, GET_STUDENTS, UPDATE_STUDENT, DELETE_STUDENT, UPDATE_LIBRARIAN, GET_LIBRARIANS, DELETE_LIBRARIAN} from '../constants/actionType'
+import {LOG_ADMIN,CREATE_STUDENT,CREATE_LIBRARIAN, GET_STUDENTS, UPDATE_STUDENT, DELETE_STUDENT, UPDATE_LIBRARIAN, GET_LIBRARIANS, DELETE_LIBRARIAN, USER_LOG_OUT} from '../constants/actionType'
 import * as api from '../api/admin'
 
 export const loginAdmin = (adminData) => async (dispatch) => {
     try {
         const {data} = await api.logAdmin(adminData)  //here response is destructured to {data}
+        localStorage.setItem("token",JSON.stringify(data.token))
         if(data.login){
             const action = {
                 type:LOG_ADMIN,
@@ -14,6 +15,16 @@ export const loginAdmin = (adminData) => async (dispatch) => {
         else{
             window.alert("wrong user")
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const logoutAdmin = () => async (dispatch) => {
+    try {
+        dispatch({
+            type:USER_LOG_OUT,
+            payload:[]
+        })
     } catch (error) {
         console.log(error)
     }

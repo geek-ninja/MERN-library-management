@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const issueModel = require('../models/booksIssueModel')
+const studentModel = require('../models/studentModel')
 
 module.exports.getIssues = () => {
     return async (req,res) => {
@@ -47,7 +48,39 @@ module.exports.updateIssueReturned = () => {
     return async (req,res) => {
         const {id} = req.params
         if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No issue with that Id')
+    
         const updatedIssue = await issueModel.findByIdAndUpdate(id,{returned:true,returnDate:new Date()},{new:true})
         res.json(updatedIssue)
+    }
+}
+
+module.exports.updateIssueFine = () => {
+    return async (req,res) => {
+        const {id} = req.params
+        const fine = req.body
+        if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No issue with that Id')
+        const updatedIssue = await issueModel.findByIdAndUpdate(id,{issueFine:fine.fineBal},{new:true})
+        res.json(updatedIssue)
+    }
+}
+
+// module.exports.librarianClearIssueFine = () => {
+//     return async (req,res) => {
+//         const {id} = req.params
+//         if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No issue with that Id')
+//         const updatedIssue = await issueModel.findByIdAndUpdate(id,{issueFine:0},{new:true})
+//         res.json({updatedIssue})
+//     }
+// }
+
+module.exports.clearIssueFine = () => {
+    return async (req,res) => {
+        const {id} = req.params
+        if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No issue with that Id')
+        const issue = await issueModel.findById(id).populate('student')
+        const fine = issue.issueFine
+        const updatedStudent = await studentModel.findByIdAndUpdate(issue.student._id,{fineBal:issue.student.fineBal - fine})
+        const updatedIssue = await issueModel.findByIdAndUpdate(id,{returned:true,issueFine:0},{new:true})
+        res.json({updatedStudent,updatedIssue})
     }
 }

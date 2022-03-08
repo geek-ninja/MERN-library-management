@@ -30,6 +30,11 @@ const bookIssueSchema = mongoose.Schema({
     returnDate: {
         type: Date,
         default: undefined
+    },
+    issueFine:{
+        type:Number,
+        min:0,
+        default:0
     }
 
 }, {

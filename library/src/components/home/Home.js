@@ -5,6 +5,13 @@ import './home.css'
 import banner from '../../IMG/banner.jpg'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useEffect, useState } from 'react'
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
+import { loginStudent } from '../../Action/studentAction'
+import { loginLibrarian } from '../../Action/librarianAction'
+import { loginAdmin } from '../../Action/adminAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
 
@@ -32,6 +39,48 @@ function Home() {
   
   });
 
+  const [user,setUser] = useState({name:'',password:''})
+  const [studentId,setStudentId] = useState('')
+  const [userType,setUserType] = useState('')
+  const authType = ['admin','librarian','student']
+  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const auth = useSelector((state) => state.auth)
+  useEffect(() => {
+    if(auth.length > 0 && auth[0].data.authType === 'admin'){
+      navigate('/admin')
+    }
+    if(auth.length > 0 && auth[0].data.authType === 'librarian'){
+      navigate('/librarian')
+    }
+    if(auth.length > 0 && auth[0].data.authType === 'student'){
+      navigate('/student')
+    } 
+  },[auth,userType])
+
+
+  const clear = () => {
+    setUser({name : '',password: ''})
+    setUserType('')
+    setStudentId('')
+  }
+
+  const login = (e) => {
+    e.preventDefault()
+    if(userType === 'admin'){
+      dispatch(loginAdmin(user))
+    }
+    if(userType === 'librarian'){
+      dispatch(loginLibrarian(user))
+    }
+    if(userType === 'student'){
+      user.roll = studentId
+      dispatch(loginStudent(user))
+    }
+    clear()
+  }
 
   return (
     <div className = 'home'>
@@ -42,13 +91,31 @@ function Home() {
           </div>
           <div className='home_desc_text'>
             <h1 data-aos = "fade-right" data-aos-duration="1000" data-aos-delay = "0">Q LIBRARY</h1>
-            <h2 data-aos = "fade-right" data-aos-duration="1000" data-aos-delay = "1000">EXPLORE BEYOND..!!</h2>
+            <h2 data-aos = "fade-right" data-aos-duration="1000" data-aos-delay = "800">EXPLORE BEYOND..!!</h2>
           </div>
         </div>
         <div className='home_users'>
-          <AdminForm/>
-          <LibrarianForm/>
-          <StudentForm/>
+          <form onSubmit={login}>
+          <FormControl className='librarian_allot_formControl'>
+            <InputLabel id='student-select' >who's logging ?</InputLabel>
+              <Select labelId='student-select' variant= "standard" color="primary" onChange={(e) => setUserType(e.target.value)} value = {userType}>
+                  {
+                      authType.map((auth) => (
+                          <MenuItem value = {auth}>{auth}</MenuItem>
+                      ))
+                  }
+              </Select>
+            </FormControl>
+            <TextField type = "text" required value={user.name} onChange = {(e) => setUser({...user,name:e.target.value})} label="Name"/>
+            {
+              userType === 'student'? <TextField type = "text" required value={studentId} onChange = {(e) => setStudentId(e.target.value)} label="Roll"/>:''
+            }
+            <TextField type = "password" required value={user.password} onChange={(e) => setUser({...user,password:e.target.value})} label="Password"/>
+            <Button type = "submit" variant="contained" color="primary">login</Button>
+          </form>
+          {/* <AdminForm/> */}
+          {/* <LibrarianForm/>
+          <StudentForm/> */}
         </div>  
       </div>
       <div className='home_banner'>

@@ -40,8 +40,93 @@
     will-change: transform;
     cursor: pointer;
 }
+.librarian_allot_formControl{
+    margin: 0px 10px !important;
+}
+.librarian_allot_formControl > .MuiFormLabel-root{
+    font-size: 18px !important;
+    font-weight: 500 !important;
+}
+.MuiSelect-selectMenu{
+    width: 300px !important;
+}
+.MuiSelect-select.MuiSelect-select{
+    margin-top: 10px !important;
+}
+/* .MuiInputBase-input {
+    font-size: 20px !important;
+} */
+
+.librarianAuth{
+    padding:  0 20px;
+}
+.librarianAuth_welcome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.librarianAuth_welcome > img{
+    object-fit: contain;
+    max-width: 200px;
+    width: 100%;
+}
+.librarianAuth > form {
+    display: flex;
+    flex-direction: column;
+}
+.MuiFormControl-root{
+    margin: 5px 0 !important;
+}
+.allot_form{
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+.librarian_book_form{
+    margin: 5px 0;
+}
+.librarian_book_form > form{
+    display: flex;
+    flex-direction: column;
+}
+.issues{
+    background-color: #BFE3ED;
+    padding: 10px 20px;
+}
+
+.lib_issues{
+    background-color: #ffff;
+    padding: 20px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
+    overflow: auto;
+    margin: 10px 20px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.librarian_nav{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #ffff;
+    padding: 20px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
+    margin: 10px 20px;
+}
+
 
 @media only screen and (max-width: 768px) {
+    .librarian_book_form{
+        padding: 0 20px;
+    }
+    .allot_form{
+        padding: 0 20px;
+    }
     .librarian_form > button{
         margin: 5px 0;
     }

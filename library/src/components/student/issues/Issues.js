@@ -15,18 +15,27 @@ function Issues({currStudent}) {
   },[issues])
 
   return (
-    <div className='issues'>
-      <h1>welcome {currStudent.data.name}</h1>
-        {
-        <div className='issues_list'>
-            {
-                issues.map((issue) => (
-                   currStudent.data._id === issue.student._id ? <Issue issue = {issue}/>:''
-                  // <Issue issue = {issue} currStudent = {currStudent}/>
-                ))
-            }
-        </div>
-        }
+    <div className='student_issues'>
+      <h2>my requests</h2>
+      <table>
+        <tr>
+          <th>book</th>
+          <th>author</th>
+          <th>student</th>
+          <th>roll</th>
+          <th>issue date</th>
+          <th>due date</th>
+          <th>return date</th>
+          <th>fine </th>
+          <th>issue status</th>
+        </tr>
+          {
+              issues.map((issue) => (
+                  currStudent._id === issue.student._id ? <Issue issue = {issue}/>:''
+                // <Issue issue = {issue} currStudent = {currStudent}/>
+              ))
+          }
+      </table>
     </div>
   )
 }

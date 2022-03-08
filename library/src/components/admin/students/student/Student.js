@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { deleteStudent, updateStudent } from '../../../../Action/adminAction'
-import DeleteIcon from '@material-ui/icons/Delete';
-import SystemUpdateAlt from '@material-ui/icons/SystemUpdateAlt';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
+import CreateIcon from '@material-ui/icons/Create';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function Student({student}) {
 
@@ -18,9 +18,11 @@ function Student({student}) {
   const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
+      maxWidth: 400,
+      width:'100%',
+      backgroundColor: '#D4F2FD',
+      border: '2px solid #20B283',
+      borderRadius:'10px',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
@@ -70,9 +72,9 @@ const body = (
       <td>{student.roll}</td>
       <td>{student.name}</td>
       <td>{student.email}</td>
-      <td><Button size = 'large' variant='contained' color = 'primary' onClick={handleOpen}><SystemUpdateAlt/>&nbsp;update&nbsp;</Button></td>
+      <td><Button size = 'large' variant='text' color = 'primary' onClick={handleOpen}><CreateIcon fontSize='large'/></Button></td>
       <Modal open={open} onClose={handleClose}>{body}</Modal>
-      <td><Button size = 'large' variant='contained' color = 'secondary' onClick={() => dispatch(deleteStudent(student._id))}><DeleteIcon/>&nbsp; Delete &nbsp;</Button></td>  
+      <td><Button size = 'large' variant = "text" color = 'secondary' onClick={() => dispatch(deleteStudent(student._id))}><DeleteIcon fontSize='large'/></Button></td>  
     </tr>    
   )
 }

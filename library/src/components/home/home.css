@@ -6,7 +6,8 @@
     background-color: #D4F2FD;
     padding: 20px;
     border-radius: 50px;
-    margin: 5% 5% 0px 5%;
+    margin: 5% 5% 10px 5%;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.5);
 }
 .home_about{
     display: flex;
@@ -32,9 +33,17 @@
     width: 100%;
     border-radius: 20px;
 }
-.home_users{
+.home_users > form{
     display: flex;
+    flex-direction: column;
 }
+.MuiFormLabel-root{
+    color: black !important;
+    font-size: 1.2rem !important;
+}
+/* .home_users{
+    display: flex;
+} */
 @media only screen and (max-width: 768px) {
     .home{
         border-radius: 10px;
@@ -49,13 +58,14 @@
     .home_desc_text > h2{
         font-size: 2rem;
     }
-    .home_users{
+    /* .home_users{
         width: 100%;
         align-items: center;
         justify-content: center;
         margin-top: 10px;
         flex-direction: column;
-    }
+    } */
+ 
 }
 
 @media only screen and (max-width: 480px) {

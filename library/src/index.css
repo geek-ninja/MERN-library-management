@@ -2,4 +2,6 @@ body {
   margin: 0;
   background: -webkit-linear-gradient(to right, #20C195, #238CA2, #2754AF);
   background: linear-gradient(to right, #20C195, #238CA2, #2754AF);
+  background-position: center;
+  background-size: cover;
 }

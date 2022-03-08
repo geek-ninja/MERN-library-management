@@ -14,25 +14,34 @@ function Issues() {
     // const issues = useSelector((state) => state.issue)
 
     return (
-    <div className='issues'>
-        <div className='issues_header'>
-            <h2>pending book requests</h2>
+    <div className='lib_issues'>
+        <div className='lib_issues_header'>
+            <h2>book requests</h2>
         </div>
+        <table>
+         <tr>
+          <th>book</th>
+          <th>author</th>
+          <th>student</th>
+          <th>roll</th>
+          <th>issue date</th>
+          <th>due date</th>
+          <th>return date</th>
+          <th>fine </th>
+          <th>issue status</th>
+          <th>fine check</th>
+        </tr>
         {
             !issues.length ?
             <div>
                 <h2>No Book Request yet ..</h2>
                 <CircularProgress/>
             </div> 
-            :
-            (
-                <div className='issues_list'>
-                    {
-                        issues.map((issue) => (<Issue issue = {issue}/>))
-                    }
-                </div>
-            )
+            :                
+                issues.map((issue,index) => (<Issue issue = {issue} index = {index}/>))
         }
+
+        </table>
     </div>
     
   )

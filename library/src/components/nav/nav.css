@@ -1,0 +1,28 @@
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #D4F2FD;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    z-index: 100;
+    position: sticky;
+    top: 0;
+}
+.nav_user > h2{
+    color:#414242;
+}
+.nav_logo > img{
+    width: 200px;
+}
+.nav_menu{
+    display: flex;
+}
+@media only screen and (max-width: 768px) {
+    
+}
+@media only screen and (max-width: 480px) {
+ .nav{
+     flex-wrap: wrap;
+ }   
+}

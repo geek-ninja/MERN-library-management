@@ -26,6 +26,7 @@ router.post('/librarian/login',librarianController.login())
 
 // **************** student routes************************
 router.post('/student/login',studentController.login())
+router.patch('/student/:id/fine',studentController.getIssueFine())
 
 // **************** books routes************************
 router.get('/books',bookController.getBooks())
@@ -41,5 +42,8 @@ router.post('/issue',issueController.createIssue())
 router.delete('/issue/:id',issueController.deleteIssue())
 router.patch('/issue/:id/request',issueController.updateIssue())
 router.patch('/issue/:id/returned',issueController.updateIssueReturned())
+// router.patch('/issue/:id/clearLibfine',issueController.librarianClearIssueFine())
+router.patch('/issue/:id/fine',issueController.updateIssueFine())
+router.patch('/issue/:id/clearfine',issueController.clearIssueFine())
 
 module.exports = router

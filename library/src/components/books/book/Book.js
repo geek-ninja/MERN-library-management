@@ -10,7 +10,9 @@ import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
-
+import CreateIcon from '@material-ui/icons/Create';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 function Book({book}) {
 
     const dispatch = useDispatch()
@@ -22,9 +24,11 @@ function Book({book}) {
     const useStyles = makeStyles((theme) => ({
       paper: {
         position: 'absolute',
-        width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
+        maxWidth:400,
+        width: `${100}%`,
+        backgroundColor: '#D4F2FD',
+        border: '2px solid #20B283',
+        borderRadius:'10px',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
       },
@@ -71,16 +75,22 @@ function Book({book}) {
   return (
     <div className='book'>
         <div className='book_details'>
-            <h1>{book.title}</h1>
-            <p>{book.author}</p>
             <img src={book.img} alt = 'book'/>
-            {/* <Button size = 'small' color = 'primary' onClick={() => setCurrId(book._id)}><MoreHorizIcon/> &nbsp; update &nbsp;</Button> */}
-            <Button size = 'small' color = 'primary' onClick={() => dispatch(bookQuantity(book._id))}><AddShoppingCartIcon/></Button>
-            &nbsp; Qty: &nbsp;{book.quantity} &nbsp;
-            <Button size = 'small' color = 'primary' onClick={() => dispatch(bookQuantityRemove(book._id))}><RemoveShoppingCartIcon/></Button>
-            <Button size = 'small' color = 'primary' onClick={handleOpen}><SystemUpdateAlt/> update</Button>
-            <Modal open={open} onClose={handleClose}>{body}</Modal>
-            <Button size = 'small' color = 'primary' onClick={() => dispatch(deleteBooks(book._id))}><DeleteIcon/>&nbsp; Delete &nbsp;</Button>
+            <h2>{book.title}</h2>
+            <p>~&nbsp;{book.author}</p>
+            <div className='book_details_btn'>
+              <div className='book_details_qty_btn'>
+              <Button size = 'small' color = 'primary' onClick={() => dispatch(bookQuantity(book._id))}><AddCircleIcon/></Button>
+              Qty: &nbsp;{book.quantity}
+              <Button size = 'small' color = 'primary' onClick={() => dispatch(bookQuantityRemove(book._id))}><RemoveCircleIcon/></Button>
+              </div>
+              <div className='book_details_ud_btn'>
+                <Button variant='contained' size = 'small' color = 'primary' onClick={handleOpen}><CreateIcon/>&nbsp; update &nbsp;</Button>
+                &nbsp;
+                <Modal open={open} onClose={handleClose}>{body}</Modal>
+                <Button variant='contained' size = 'small' color = 'secondary' onClick={() => dispatch(deleteBooks(book._id))}><DeleteIcon/>&nbsp; Delete &nbsp;</Button>
+              </div>
+            </div>
         </div>
     </div>
   )

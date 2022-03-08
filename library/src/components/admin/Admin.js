@@ -17,18 +17,16 @@ function Admin() {
 
 
   return (
+
     <div className='admin'>
-      <div className='admin_create'>
-        <AdminStudent/>
-        <AdminLibrarian/>
-      </div>
       <div className='admin_dashboard'>
-        <h1>Dashboard</h1>
         <div className='admin_dashboard_student'>
+          <AdminStudent/>
           <h2>Student list</h2>
           <Students/>
         </div>
-        <div className='admin_dashboard_librarain'>
+        <div className='admin_dashboard_librarian'>
+          <AdminLibrarian/>
           <h2>librarian list</h2>
           <Librarians/>
         </div>

@@ -16,9 +16,11 @@ function AdminLibrarian() {
     const useStyles = makeStyles((theme) => ({
         paper: {
           position: 'absolute',
-          width: 400,
-          backgroundColor: theme.palette.background.paper,
-          border: '2px solid #000',
+          maxWidth: 400,
+          width:'100%',
+          backgroundColor: '#D4F2FD',
+          border: '2px solid #20B283',
+          borderRadius:'10px',
           boxShadow: theme.shadows[5],
           padding: theme.spacing(2, 4, 3),
         },
@@ -44,10 +46,40 @@ function AdminLibrarian() {
     }
     const clear = () => {
         setlibrarianData({name:'',password:''})
+    }
+    
+    const formValid = (fieldName,fieldValue) => {
+      switch (fieldName) {   
+        case 'username':
+          const usernameValid = fieldValue.length > 0
+          if(!usernameValid){window.alert('invalid username')}
+          return usernameValid
+
+        case 'email':
+          const emailValid = fieldValue.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+          const validRes = emailValid ?  true :  false
+          if(!validRes){window.alert('invalid email')}
+          return validRes
+        
+        case 'password':
+          const passwordValid = fieldValue.length >= 8
+          if(!passwordValid){window.alert('invalid password , min password length is 8')}
+          return passwordValid
+        
+        default:
+          break;
       }
+    }
+
     const signup = async (e) => {
         e.preventDefault()
-        dispatch(createLibrarian(librarianData))
+        if(formValid('username',librarianData.name) && formValid('password',librarianData.password)){
+          dispatch(createLibrarian(librarianData))
+          window.alert('user created !')
+        }
+        else{
+          window.alert('Invalid Input')
+        }
         clear()
         handleClose()
     }
@@ -64,7 +96,6 @@ function AdminLibrarian() {
     )
   return (
     <div className='adminLib'>
-        <div className='adminLib_desc'></div>
         <div className='adminLib_btn'>
             <Button type="button" variant='contained' color='primary' size='large' onClick={handleOpen}>create librarian</Button>
             <Modal open={open} onClose={handleClose}>{body}</Modal>

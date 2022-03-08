@@ -5,6 +5,7 @@ import Librarian from './components/librarian/Librarian';
 import Nav from './components/nav/Nav';
 import Student from './components/student/Student';
 import './App.css';
+import Issues from './components/librarian/issues/Issues';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/student' element = {<Student/>}/>
           <Route path='/librarian' element = {<Librarian/>}/>
+          <Route path='/librarian/request' element = {<Issues/>}/>
           <Route path='/admin' element = {<Admin/>}/>
           <Route path='/' element = {<Home/>}/>
         </Routes>

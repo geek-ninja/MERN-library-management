@@ -21,6 +21,11 @@ const studentSchema = mongoose.Schema({
     authType: {
         type : String,
         default:"student"
+    },
+    fineBal:{
+        type:Number,
+        min:0,
+        default:0
     }
 })
 

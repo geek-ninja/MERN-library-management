@@ -39,3 +39,52 @@
     will-change: transform;
     cursor: pointer;
 }
+.studentAuth{
+    padding:  0 20px;
+}
+.studentAuth_welcome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.studentAuth_welcome > img{
+    object-fit: contain;
+    max-width: 200px;
+    width: 100%;
+}
+.studentAuth > form {
+    display: flex;
+    flex-direction: column;
+}
+.MuiFormControl-root{
+    margin: 5px 0 !important;
+}
+.student_book_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.student_issues{ 
+    overflow-x: scroll;
+}
+.books_search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.books_search_input{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 2px 5px;
+    border: solid 1px #223E80;
+}
+.books_search_input > input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}

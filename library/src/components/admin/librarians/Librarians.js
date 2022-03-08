@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CircularProgress } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import Librarian from './librarian/Librarian'
+import SearchIcon from '@material-ui/icons/Search';
 
 function Librarians() {
 
     const librarians = useSelector((state) => state.librarian)
 
+    const [librarianSearch,setLibrarianSearch] = useState('')
+
   return (
     <div className='librarians'>
+        <div className='librarian_search'>
+            <div className='librarian_search_input'>
+                <SearchIcon/>
+                <input type = 'text' placeholder='search student' value={librarianSearch} onChange={(e) => setLibrarianSearch(e.target.value)}/>
+            </div>
+        </div>
       <table className='librarians_table'>
         <tr>
           <th>Librarian Name</th>
-          <th></th>
-          <th></th>
+          <th>update</th>
+          <th>delete</th>
         </tr>
         {
           !librarians.length ? 
@@ -23,7 +32,14 @@ function Librarians() {
           </div> 
           :
             (
-            librarians.map((librarian) => (
+            librarians.filter((librarian) => {
+              if(librarianSearch === ''){
+                return librarian
+              }
+              else if(librarian.name.toLowerCase().includes(librarianSearch.toLowerCase())){
+                return librarian
+              }
+            }).map((librarian) => (
               <Librarian librarian = {librarian}/>
             ))
             )

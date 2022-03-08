@@ -1,16 +1,18 @@
 const librarianModel = require('../models/librarianModel')
+const { createTokens } = require('../service/token')
 
 module.exports.login = () => {
     return async (req,res) => {
         const librarianData = req.body
         const librarianAuth = await librarianModel.findOne({name:librarianData.name,password:librarianData.password})
-        
         try {
             if(librarianAuth){
+                const token = createTokens({login:true,data:librarianAuth})
                 return res.status(200).json({
                     login:true,
                     message:'login successful',
-                    data:librarianAuth
+                    data:librarianAuth,
+                    token:token
                 })
             }
             else{

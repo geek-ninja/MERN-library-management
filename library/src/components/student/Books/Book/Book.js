@@ -6,14 +6,17 @@ import { bookQuantityRemove, getBooks } from '../../../../Action/bookAction'
 import Issues from '../../issues/Issues'
 
 function Book({book,currStudent}) {
-
+    
     const dispatch = useDispatch()
     const [bookReqBtn,setBookReqBtn] = useState(false)
+    // const [requestBtn,setRequestBtn] = useState(false)
 
     const requestIssue = (event,book,currStudent) => {
+        
         event.preventDefault()
+        // setRequestBtn(true)
         const issueReq = {
-            student: currStudent.data._id,
+            student: currStudent._id,
             book: book._id,
             request:true,
             issueStatus: false,
@@ -22,6 +25,7 @@ function Book({book,currStudent}) {
         dispatch(createIssue(issueReq))
         dispatch(bookQuantityRemove(book._id))
         setBookReqBtn(!bookReqBtn)
+        
     }
   
   return (
@@ -30,12 +34,12 @@ function Book({book,currStudent}) {
             <h1>{book.title}</h1>
             <p>{book.author}</p>
             <img src={book.img} alt = 'book'/>
-            <p>{book.quantity}</p>
+            <p>Qty : {book.quantity}</p>
             {
                 book.quantity > 0 ? 
                 <div>
                     {
-                        <Button variant='contained' color='primary' onClick={(event) => requestIssue(event, book,currStudent)}>request</Button>
+                        <Button variant='contained'  color='primary' onClick={(event) => requestIssue(event, book,currStudent)}>request</Button>
                     }
                 </div>
                 :

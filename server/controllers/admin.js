@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const adminModel = require('../models/adminMode')
 const studentModel = require('../models/studentModel')
 const librarianModel = require('../models/librarianModel')
+const { createTokens } = require('../service/token')
+const bcrypt = require('bcrypt')
 
 module.exports.login = () => {
     return async (req,res) => {
@@ -9,10 +11,12 @@ module.exports.login = () => {
         const adminAuth = await adminModel.findOne({name:adminData.name,password:adminData.password})
         try {
             if(adminAuth){
+                const token = createTokens({login:true,data:adminAuth})
                 res.status(200).json({
                     login:true,
                     message:'login successful',
-                    data:adminAuth
+                    data:adminAuth,
+                    token:token
                 })
             }
             else{
@@ -33,6 +37,9 @@ module.exports.login = () => {
 module.exports.createStudent = () => {
     return async (req,res) => {
         const student = req.body
+        const hashedPassword = await bcrypt.hash(student.password,10)
+        student.password = hashedPassword
+        
         const newStudent = new studentModel(student)
         try {
             await newStudent.save()
@@ -76,6 +83,8 @@ module.exports.deleteStudent = () => {
 module.exports.createLibrarian = () => {
     return async (req,res) => {
         const librarian = req.body
+        const hashedPassword = await bcrypt.hash(librarian.password,10)
+        librarian.password = hashedPassword
         const newLibrarian = new librarianModel(librarian)
         try {
             await newLibrarian.save()

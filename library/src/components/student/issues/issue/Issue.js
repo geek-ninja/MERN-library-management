@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { deleteIssue, getIssues, updateIssueReturned } from '../../../../Action/issueAction'
+import { deleteIssue, getIssues, issueFineClear, updateIssueFine, updateIssueReturned } from '../../../../Action/issueAction'
 import { useDispatch } from 'react-redux'
 import { Button } from '@material-ui/core'
 import { bookQuantity, getBooks } from '../../../../Action/bookAction'
 import moment from 'moment'
+import { getStudentFine } from '../../../../Action/studentAction'
 
 function Issue({issue}) {
     
@@ -14,6 +15,7 @@ function Issue({issue}) {
     const [studentIssueDate,setStudentIssueDate] = useState(undefined)
     const [dueDate,setDueDate] = useState(undefined)
     const [returnDate,setReturnDate] = useState(undefined)
+    const [checkFine,setCheckFine] = useState(false)
 
     useEffect(() => {
       if((issue.issueDate !== undefined) && (issue.issueDate !== null)){
@@ -25,11 +27,32 @@ function Issue({issue}) {
       }
     },[issue])
 
+    // const payFine = (e) => {
+    //   e.preventDefault()
+    //   dispatch(issueFineClear(issue._id))
+    //   dispatch(bookQuantity(issue.book._id))
+    // }
+
     const returnBook = (e) => {
       e.preventDefault()
-      dispatch(updateIssueReturned(issue._id))
-      dispatch(bookQuantity(issue.book._id))
+      let f_issueDate = moment(issue.issueDate)
+      let f_returnDate = moment(new Date()).add(9,'d')
+      let check_fine = f_returnDate.diff(f_issueDate,'days')
+      if(check_fine > 7){
+        window.alert('clear you due fines !!')
+        setCheckFine(true)
+        const studentFine = {
+          fineBal:(check_fine - 7)*2
+        }
+        dispatch(getStudentFine(issue.student._id,studentFine))
+        dispatch(updateIssueFine(issue._id,studentFine))
+      }
+      else{
+        dispatch(updateIssueReturned(issue._id))
+        dispatch(bookQuantity(issue.book._id))
+      }
     }
+    
     const cancelBook = (e) => {
       e.preventDefault()
       dispatch(deleteIssue(issue._id))
@@ -37,25 +60,35 @@ function Issue({issue}) {
     }
 
   return (
-    <div className='issue'>
-        <div className='issue_details'>
-          {
+
+
             issue.returned ?'':
-            <div>
-              {/* issue date : {moment(issue.issueDate).format('DD-MM-YYYY')} |  due date :  {moment(issue.issueDate).add(7,'d').format('DD-MM-YYYY')} | return date : {moment(issue.returnDate).format('DD-MM-YYYY')} */}
-            <p>{issue.book.title} | {issue.book.author} | {issue.book.title} | {issue.student.name} | issueDate : {studentIssueDate} | dueDate : {dueDate} | return Date : {returnDate}</p>
+            <tr>
+              <td>{issue.book.title}</td>
+              <td>{issue.book.author}</td>
+              <td>{issue.student.name}</td>
+              <td>{issue.student.roll}</td>
+              <td>{studentIssueDate}</td>
+              <td>{dueDate}</td>
+              <td>{returnDate}</td>
+              <td>{issue.issueFine}</td>            
               {issue.request && issue.issueStatus? 
-                <Button variant='contained' color='secondary' onClick={returnBook}>return</Button>
+                <td>
+                  {
+                    checkFine ? 
+                    <Button variant='contained' color = 'secondary'>fine !</Button>
+                    :
+                    <Button variant='contained' color='primary' onClick={returnBook}>return</Button>
+                  }
+                </td>
                 : 
-                <div>
+                <td>
                   <Button variant='contained' color='secondary'>Pending ...</Button>
-                  <Button size = 'small' color = 'primary' onClick={cancelBook}><DeleteIcon/>&nbsp; cancel &nbsp;</Button>
-                </div>
+                  <Button variant= 'contained' size = 'small' color = 'primary' onClick={cancelBook}><DeleteIcon/>&nbsp; cancel &nbsp;</Button>
+                </td>
               }
-            </div>
-          }
-        </div>
-    </div>
+            </tr>
+          
   )
 }
 

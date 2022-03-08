@@ -7,6 +7,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
 import {loginLibrarian} from '../../Action/librarianAction'
 import './librarian.css'
+import formImg from '../../IMG/library_form.png'
 
 function LibrarianForm() {
 
@@ -27,8 +28,9 @@ function LibrarianForm() {
       paper: {
         position: 'absolute',
         width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
+        backgroundColor: '#D4F2FD',
+        border: '2px solid #20B283',
+        borderRadius:'10px',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
       },
@@ -66,6 +68,10 @@ function LibrarianForm() {
   const body = (
   <div style={modalStyle} className={classes.paper}>
       <div className='librarianAuth'>
+      <div className='librarianAuth_welcome'>
+          <img src={formImg} alt = 'form img'/>
+          <h2>Librarian Panel</h2>
+        </div>
           <form onSubmit={login}>
               <TextField type = "text" required value={librarianData.name} onChange = {(e) => setLibrarianData({...librarianData,name:e.target.value})} label="Name"/>
               <TextField type = "password" required value={librarianData.password} onChange={(e) => setLibrarianData({...librarianData,password:e.target.value})} label="Password"/>

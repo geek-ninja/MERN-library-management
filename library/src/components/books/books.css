@@ -1,0 +1,71 @@
+.books{
+    background-color: #ffff;
+    padding: 20px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
+    overflow: auto;
+    margin: 20px 20px;
+}
+.book_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.book_details > img{
+    object-fit: contain;
+    max-width: 100px;
+    width: 100%;
+}
+.book{
+    margin: 0 10px;
+}
+.book_details{
+    background-color: #D4F2FD;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    min-width: 200px;
+    padding: 10px 5px;
+    margin: 5px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
+}
+
+/* 
+
+.book_details_btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.librarian_book_allot_dashboard{
+    display: flex;
+    justify-content: space-between;
+}
+.librarian_book_list{
+    flex: 0.4;
+    margin: 0 5px;
+}
+.librarian_book_issues{
+    flex: 0.6;
+    margin: 0 5px;
+}
+.book_list{
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+@media only screen and (max-width: 480px){} */
+@media only screen and (max-width: 768px){
+    .books{
+        max-height: 500px;
+        overflow-y: auto;
+    }
+}

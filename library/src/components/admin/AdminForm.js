@@ -28,8 +28,9 @@ function AdminForm() {
           position: 'absolute',
           maxWidth:400,
           width: `${100}%`,
-          backgroundColor: theme.palette.background.paper,
-          border: '2px solid #000',
+          backgroundColor: '#D4F2FD',
+          border: '2px solid #20B283',
+          borderRadius:'10px',
           boxShadow: theme.shadows[5],
           padding: theme.spacing(2, 4, 3),
         },
@@ -68,8 +69,8 @@ function AdminForm() {
     <div style={modalStyle} className={classes.paper}>
         <div className='adminAuth'>
           <div className='adminAuth_welcome'>
-          <img src={formImg} alt = 'form img'/>
-          <h2>Welcome</h2>
+            <img src={formImg} alt = 'form img'/>
+            <h2>Admin Panel</h2>
           </div>
             <form onSubmit={login}>
                 <TextField type = "text" required value={adminData.name} onChange = {(e) => setAdminData({...adminData,name:e.target.value})} label="Name"/>

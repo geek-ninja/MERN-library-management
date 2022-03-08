@@ -7,6 +7,8 @@ import { useDispatch,useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
 import { loginStudent } from '../../Action/studentAction';
 import './student.css'
+import formImg from '../../IMG/library_form.png'
+import AdminStudent from '../admin/AdminStudent';
 
 function StudentForm() {
 
@@ -27,8 +29,9 @@ function StudentForm() {
       paper: {
         position: 'absolute',
         width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
+        backgroundColor: '#D4F2FD',
+        border: '2px solid #20B283',
+        borderRadius:'10px',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
       },
@@ -66,11 +69,19 @@ function StudentForm() {
   const body = (
   <div style={modalStyle} className={classes.paper}>
       <div className='studentAuth'>
+        <div className='studentAuth_welcome'>
+          <img src={formImg} alt = 'form img'/>
+          <h2>Student Panel</h2>
+        </div>
           <form onSubmit={login}>
               <TextField type = "text" required value={studentData.roll} onChange = {(e) => setStudentData({...studentData,roll:e.target.value})} label="Student Roll"/>
               <TextField type = "password" required value={studentData.password} onChange={(e) => setStudentData({...studentData,password:e.target.value})} label="Password"/>
               <Button type = "submit" variant="contained" color="primary">login</Button>
           </form>
+          <div className='student_signup'>
+            <p>Don't have an account ?</p>
+             <AdminStudent/>
+          </div>
       </div>
   </div>
   )

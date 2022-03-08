@@ -5,26 +5,54 @@ import Book from './Book/Book'
 import Issues from '../issues/Issues'
 import { getIssues } from '../../../Action/issueAction'
 import { fetchBooks } from '../../../api/books'
+import jwt_decode from "jwt-decode";
+import { useNavigate } from 'react-router-dom'
+import SearchIcon from '@material-ui/icons/Search';
 
 function Books() {
 
     // const books = useSelector((state) => state.books)
+    const navigate = useNavigate()
     const [books,setBooks] = useState([])
+    const [user,setUser] = useState('')
+    const [bookSearch,setBookSearch] = useState('')
     const student = useSelector((state) => state.auth)
     
+
     useEffect(() => {
+        const token = JSON.parse(localStorage.getItem('token'))
+        if(token === null || token === undefined){
+        navigate('/')
+        }
+        else{
+        const authUser = jwt_decode(token)
+        setUser(authUser)
+        }
         fetchBooks().then((res) => setBooks(res.data))
     },[books])
 
   return (
     <div className='books'>
+        <div className='books_search'>
+            <div className='books_search_input'>
+                <SearchIcon/>
+                <input type = 'text' placeholder='search book' value={bookSearch} onChange={(e) => setBookSearch(e.target.value)}/>
+            </div>
+        </div>
         
         {
             !books.length ? <CircularProgress/>:(
-                <div className='books_list'>
+                <div className='student_book_list'>
                     {
-                        books.map((book) => (
-                            <Book book = {book} currStudent = {student[0]}/>
+                        books.filter((book) => {
+                            if(bookSearch === ''){
+                                return book
+                            }
+                            else if(book.title.toLowerCase().includes(bookSearch.toLowerCase())){
+                                return book
+                            }
+                        }).map((book) => (
+                            <Book book = {book} currStudent = {user.data}/>
                         ))
                     }
                 </div>
