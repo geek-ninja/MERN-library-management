@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&family=Rancho&family=Righteous&family=Roboto&display=swap');
+
 .student_form> button{
     border: 2px solid currentColor;
     border-radius: 3rem;
@@ -64,10 +66,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: #ffff;
+    padding: 20px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
+    overflow: auto;
+    margin: 20px 20px;
+    max-height: 500px;
 }
-.student_issues{ 
-    overflow-x: scroll;
-}
+
 .books_search{
     display: flex;
     justify-content: center;
@@ -87,4 +94,40 @@
     border: none;
     outline: none;
     font-size: 16px;
+}
+.student_books{
+    flex: 0.5;
+}
+.student_books > .books{
+    max-height: 800px;
+}
+.student_issue{
+    flex: 0.5;
+}
+.student_issues{ 
+    background-color: #ffff;
+    padding: 20px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
+    overflow: auto;
+    margin: 20px 20px;
+    max-height: 180px;
+}
+.student_issues > h2 {
+    margin: 5px 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+@media only screen and (max-width: 768px){
+    .student_books > .books{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .student_book_list{
+        max-height: 400px;
+    }
+    .student_books > .books{
+        max-height: 900px;
+    }
 }

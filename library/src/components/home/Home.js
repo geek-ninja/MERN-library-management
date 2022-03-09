@@ -12,6 +12,7 @@ import { loginLibrarian } from '../../Action/librarianAction'
 import { loginAdmin } from '../../Action/adminAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import jwt_decode from "jwt-decode";
 
 function Home() {
 
@@ -49,13 +50,20 @@ function Home() {
 
   const auth = useSelector((state) => state.auth)
   useEffect(() => {
-    if(auth.length > 0 && auth[0].data.authType === 'admin'){
+
+    const token = JSON.parse(localStorage.getItem('token'))
+    let userAuth = {}
+    if(token !== null ){
+      userAuth = jwt_decode(token)
+    }
+
+    if((auth.length > 0 && auth[0].data.authType === 'admin') || (userAuth.login && userAuth.data.authType === 'admin')){
       navigate('/admin')
     }
-    if(auth.length > 0 && auth[0].data.authType === 'librarian'){
+    if((auth.length > 0 && auth[0].data.authType === 'librarian') || (userAuth.login && userAuth.data.authType === 'librarian')){
       navigate('/librarian')
     }
-    if(auth.length > 0 && auth[0].data.authType === 'student'){
+    if((auth.length > 0 && auth[0].data.authType === 'student') || (userAuth.login && userAuth.data.authType === 'student')){
       navigate('/student')
     } 
   },[auth,userType])
@@ -69,6 +77,9 @@ function Home() {
 
   const login = (e) => {
     e.preventDefault()
+    if(userType === ''){
+      window.alert('select the user !')
+    }
     if(userType === 'admin'){
       dispatch(loginAdmin(user))
     }

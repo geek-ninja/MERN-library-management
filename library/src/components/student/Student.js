@@ -33,12 +33,12 @@ function Student() {
 
   return (
     <div className='student'>
-      <div className='student_issues'>
+      <div className='student_issue'>
         <Issues currStudent = {student}/>
       </div>
-      <div className='student_books'>
+      {/* <div className='student_books'>
         <Books/>
-      </div>
+      </div> */}
     </div> 
   )
 }

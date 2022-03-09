@@ -31,8 +31,8 @@ function Book({book,currStudent}) {
   return (
     <div className='book'>
         <div className='book_details'>
-            <h1>{book.title}</h1>
-            <p>{book.author}</p>
+            <h2>{book.title}</h2>
+            <p>~ {book.author}</p>
             <img src={book.img} alt = 'book'/>
             <p>Qty : {book.quantity}</p>
             {

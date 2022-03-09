@@ -48,8 +48,17 @@ module.exports.updateIssueReturned = () => {
     return async (req,res) => {
         const {id} = req.params
         if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No issue with that Id')
-    
+        const issue = await issueModel.findById(id)
+        console.log('student return',issue.issueFine)
         const updatedIssue = await issueModel.findByIdAndUpdate(id,{returned:true,returnDate:new Date()},{new:true})
+        res.json(updatedIssue)
+    }
+}
+module.exports.updateIssueReturnDate = () => {
+    return async (req,res) => {
+        const {id} = req.params
+        if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No issue with that Id')
+        const updatedIssue = await issueModel.findByIdAndUpdate(id,{returnDate:new Date()},{new:true})
         res.json(updatedIssue)
     }
 }

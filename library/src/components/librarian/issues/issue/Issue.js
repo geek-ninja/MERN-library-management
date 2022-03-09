@@ -29,9 +29,9 @@ function Issue({issue,index}) {
       },[issue])
 
     return (
-        issue.returned?
-        ''
-        :
+        // issue.returned?
+        // ''
+        // :
         <tr>
             <td>{issue.book.title}</td>
             <td>{issue.book.author}</td>
@@ -40,7 +40,7 @@ function Issue({issue,index}) {
             <td>{studentIssueDate}</td>
             <td>{dueDate}</td>
             <td>{returnDate}</td>
-            <td>{issue.student.fineBal}</td>
+            <td>{issue.issueFine}</td>
             {
                 !issue.issueStatus? 
                 <td><Button variant='contained' color='secondary' onClick={() => dispatch(updateIssue(issue._id))}>Accept</Button></td>

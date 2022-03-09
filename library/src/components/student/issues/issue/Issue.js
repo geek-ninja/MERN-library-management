@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { deleteIssue, getIssues, issueFineClear, updateIssueFine, updateIssueReturned } from '../../../../Action/issueAction'
+import { deleteIssue, getIssues, issueFineClear, updateIssueFine, updateIssueReturnDate, updateIssueReturned } from '../../../../Action/issueAction'
 import { useDispatch } from 'react-redux'
 import { Button } from '@material-ui/core'
 import { bookQuantity, getBooks } from '../../../../Action/bookAction'
@@ -43,9 +43,11 @@ function Issue({issue}) {
         setCheckFine(true)
         const studentFine = {
           fineBal:(check_fine - 7)*2
+
         }
         dispatch(getStudentFine(issue.student._id,studentFine))
         dispatch(updateIssueFine(issue._id,studentFine))
+        dispatch(updateIssueReturnDate(issue._id))
       }
       else{
         dispatch(updateIssueReturned(issue._id))
@@ -83,7 +85,7 @@ function Issue({issue}) {
                 </td>
                 : 
                 <td>
-                  <Button variant='contained' color='secondary'>Pending ...</Button>
+                  <Button variant='contained'  size = 'small' color = 'secondary'>Pending ...</Button>&nbsp;
                   <Button variant= 'contained' size = 'small' color = 'primary' onClick={cancelBook}><DeleteIcon/>&nbsp; cancel &nbsp;</Button>
                 </td>
               }

@@ -4,9 +4,9 @@ import * as api from '../api/student'
 export const loginStudent = (studentData) => async (dispatch) => {
     try {
         const {data} = await api.logStudent(studentData)  //here response is destructured to {data}
-        localStorage.setItem("token",JSON.stringify(data.token))
-        
+    
         if(data.login){
+            localStorage.setItem("token",JSON.stringify(data.token))
             const action = {
                 type:LOG_STUDENT,
                 payload:data
@@ -17,6 +17,7 @@ export const loginStudent = (studentData) => async (dispatch) => {
             window.alert("wrong user")
         }
     } catch (error) {
+        window.alert("incorrect input !")
         console.log(error)
     }
 }

@@ -122,6 +122,7 @@ table {
     text-align: center;
     padding: 8px;
   }
+.students
 
 .students_search,.librarian_search{
     display: flex;
@@ -144,7 +145,7 @@ table {
     outline: none;
     font-size: 16px;
 }
-.students,.librarians{
+.admin_dashboard_student > .students,.librarians{
     background-color: #ffff;
     padding: 20px 20px;
     border-radius: 15px;

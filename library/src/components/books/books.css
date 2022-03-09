@@ -16,6 +16,14 @@
     max-width: 100px;
     width: 100%;
 }
+.book_details > p{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin: 2px 0;
+}
+.book_details > h2{
+    font-family: 'Roboto', sans-serif;
+}
 .book{
     margin: 0 10px;
 }

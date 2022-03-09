@@ -4,8 +4,8 @@ import * as api from '../api/admin'
 export const loginAdmin = (adminData) => async (dispatch) => {
     try {
         const {data} = await api.logAdmin(adminData)  //here response is destructured to {data}
-        localStorage.setItem("token",JSON.stringify(data.token))
         if(data.login){
+            localStorage.setItem("token",JSON.stringify(data.token))
             const action = {
                 type:LOG_ADMIN,
                 payload:data
@@ -16,6 +16,7 @@ export const loginAdmin = (adminData) => async (dispatch) => {
             window.alert("wrong user")
         }
     } catch (error) {
+        window.alert("incorrect input !")
         console.log(error)
     }
 }

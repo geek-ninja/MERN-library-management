@@ -6,6 +6,7 @@ import Nav from './components/nav/Nav';
 import Student from './components/student/Student';
 import './App.css';
 import Issues from './components/librarian/issues/Issues';
+import Books from './components/student/Books/Books';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <div className="app">
         <Nav/>
         <Routes>
-          <Route path='/student' element = {<Student/>}/>
+          <Route path='/student/request' element = {<Student/>}/>
+          <Route path='/student' element = {<Books/>}/>
           <Route path='/librarian' element = {<Librarian/>}/>
           <Route path='/librarian/request' element = {<Issues/>}/>
           <Route path='/admin' element = {<Admin/>}/>

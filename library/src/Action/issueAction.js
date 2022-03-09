@@ -48,6 +48,15 @@ export const updateIssueReturned = (id) => async (dispatch) => {
     }
 }
 
+export const updateIssueReturnDate = (id) => async (dispatch) => {
+    try {
+        const {data} = await api.updateIssueReturnDate(id)
+        dispatch({ type:UPDATE_ISSUE,payload:data})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const updateIssueFine = (id,fine) => async (dispatch) => {
     try {
         const {data} = await api.updateIssueFine(id,fine)

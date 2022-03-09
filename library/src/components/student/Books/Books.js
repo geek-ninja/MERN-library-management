@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import {CircularProgress} from '@material-ui/core'
+import {Button, CircularProgress} from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
 import Book from './Book/Book'
 import Issues from '../issues/Issues'
 import { getIssues } from '../../../Action/issueAction'
 import { fetchBooks } from '../../../api/books'
 import jwt_decode from "jwt-decode";
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 
 function Books() {
@@ -32,13 +32,15 @@ function Books() {
     },[books])
 
   return (
-    <div className='books'>
-        <div className='books_search'>
-            <div className='books_search_input'>
-                <SearchIcon/>
-                <input type = 'text' placeholder='search book' value={bookSearch} onChange={(e) => setBookSearch(e.target.value)}/>
+      <div className='student_books'>
+        <div className='books'>
+            <Button variant='contained' color='primary'><Link to='request'>My requests</Link></Button>
+            <div className='books_search'>
+                <div className='books_search_input'>
+                    <SearchIcon/>
+                    <input type = 'text' placeholder='search book' value={bookSearch} onChange={(e) => setBookSearch(e.target.value)}/>
+                </div>
             </div>
-        </div>
         
         {
             !books.length ? <CircularProgress/>:(
@@ -58,7 +60,8 @@ function Books() {
                 </div>
             )
         }
-    </div>
+        </div>
+        </div>
   )
 }
 
