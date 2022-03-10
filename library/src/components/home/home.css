@@ -46,7 +46,9 @@
 } */
 @media only screen and (max-width: 768px) {
     .home{
-        border-radius: 10px;
+        border-radius: 0px;
+        margin: 10px 0 10px 0;
+        padding: 5px 5px;
     }
     .home_desc_text{
         text-align: center;
@@ -58,14 +60,11 @@
     .home_desc_text > h2{
         font-size: 2rem;
     }
-    /* .home_users{
+    .home_users > form{
+        max-width: 250px;
         width: 100%;
-        align-items: center;
-        justify-content: center;
-        margin-top: 10px;
-        flex-direction: column;
-    } */
- 
+        margin: 0 5px;
+    }
 }
 
 @media only screen and (max-width: 480px) {

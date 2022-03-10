@@ -21,10 +21,18 @@
     display: flex;
 }
 @media only screen and (max-width: 768px) {
-    
+    .nav{
+        flex-wrap: wrap;
+   }
+   .nav_user > h2{
+       margin: 0 5px;
+   }   
 }
 @media only screen and (max-width: 480px) {
  .nav{
      flex-wrap: wrap;
- }   
+}
+.nav_user > h2{
+    margin: 0 5px;
+}   
 }

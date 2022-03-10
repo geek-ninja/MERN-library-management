@@ -148,6 +148,8 @@ table {
     margin: 5px 0;
     padding: 2px 5px;
     border: solid 1px #223E80;
+    max-width: 300px;
+    width: 100%;
 }
 .students_search_input > input , .librarian_search_input > input{
     background-color: transparent;
