@@ -10,6 +10,8 @@
     top: 0;
 }
 .nav_user > h2{
+    font-family: 'Staatliches', cursive;
+    font-size: 35px;
     color:#414242;
 }
 .nav_logo > img{
