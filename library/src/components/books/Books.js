@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import {CircularProgress} from '@material-ui/core'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import Book from './book/Book'
 import { fetchBooks } from '../../api/books'
 import './books.css'
 import SearchIcon from '@material-ui/icons/Search';
+import { getBooks } from '../../Action/bookAction'
 
 function Books() {
     
-    // const books = useSelector((state) => state.books)
-    const [books,setBooks] = useState([])
+    const dispatch = useDispatch()
+    const books = useSelector((state) => state.books)
+    // const [books,setBooks] = useState([])
     const [bookSearch,setBookSearch] = useState('')
 
     useEffect(() => {
-        fetchBooks().then((res) => setBooks(res.data))
-    }, [books])
+        // fetchBooks().then((res) => setBooks(res.data))
+        dispatch(getBooks())
+    }, [dispatch, books])
     
   return (
     <div className='books'>

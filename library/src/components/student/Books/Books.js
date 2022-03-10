@@ -8,12 +8,14 @@ import { fetchBooks } from '../../../api/books'
 import jwt_decode from "jwt-decode";
 import { Link, useNavigate } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
+import { getBooks } from '../../../Action/bookAction'
 
 function Books() {
 
-    // const books = useSelector((state) => state.books)
+    const dispatch = useDispatch()
+    const books = useSelector((state) => state.books)
     const navigate = useNavigate()
-    const [books,setBooks] = useState([])
+    // const [books,setBooks] = useState([])
     const [user,setUser] = useState('')
     const [bookSearch,setBookSearch] = useState('')
     const student = useSelector((state) => state.auth)
@@ -28,8 +30,9 @@ function Books() {
         const authUser = jwt_decode(token)
         setUser(authUser)
         }
-        fetchBooks().then((res) => setBooks(res.data))
-    },[books])
+        // fetchBooks().then((res) => setBooks(res.data))
+        dispatch(getBooks())
+    },[dispatch,books])
 
   return (
       <div className='student_books'>
