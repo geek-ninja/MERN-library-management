@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const url = 'http://localhost:5000/qlib'
+// const url = 'https://q-library-server.herokuapp.com/qlib'
 
 export const logAdmin = (adminData) => axios.post(`${url}/admin/login`,adminData)
 
