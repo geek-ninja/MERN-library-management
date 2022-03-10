@@ -11,7 +11,7 @@ const bookSchema = mongoose.Schema({
     },
     img : {
         type:String,
-        default:'https://www.m1homes.com/images/not-available.png',
+        default: "https://www.m1homes.com/images/not-available.png",
         required:true
     },
     quantity : {

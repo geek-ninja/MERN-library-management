@@ -27,6 +27,7 @@ function Issues({currStudent}) {
           <th>due date</th>
           <th>return date</th>
           <th>fine </th>
+          <th>total fine</th>
           <th>issue status</th>
         </tr>
           {

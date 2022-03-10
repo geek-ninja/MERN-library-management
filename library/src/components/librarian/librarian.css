@@ -83,12 +83,16 @@
     display: flex;
     flex-direction: column;
 }
+books
 .librarian_book_form{
     margin: 5px 0;
 }
 .librarian_book_form > form{
     display: flex;
     flex-direction: column;
+}
+.min_nav > .librarian_book_form{
+    margin: 5px 0;
 }
 .issues{
     background-color: #BFE3ED;
@@ -118,16 +122,44 @@ a{
     box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
     margin: 10px 20px;
 }
+.nav_btn{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.dropDownClose{
+    display: none;
+}
+.min_nav{
+    display: none;
+}
 .lib_issues_header > h2 {
     margin: 5px 0;
     font-family: 'Roboto', sans-serif;
 }
+
 .librarian_nav_dropdown{
     display: none;
 }
+.librarian_book_list > .books > .book_list{
+    max-height: 450px;
+    overflow-y: auto;
+}
+
 @media only screen and (max-width: 768px) {
+    .dropDownClose{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 100%;
+    }
+    .librarian_student_create{
+        margin: 5px 0;
+    }
     .librarian_nav_dropdown{
         display: flex;
+        flex-direction: column;
         justify-content: flex-end;
         align-items: flex-end;
         background-color: #ffff;
@@ -147,6 +179,16 @@ a{
 
     .librarian_nav{
         display: none;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .min_nav{
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #FFFFFF;
+        padding: 5px 0;
     }
     .librarian_book_form{
         padding: 0 20px;
@@ -156,6 +198,14 @@ a{
     }
     .librarian_form > button{
         margin: 5px 0;
+    }
+    .book_details{
+        text-align: center;
+        align-items: center;
+    }
+    .lib_issues{
+        max-height: 500px;
+        overflow: auto;
     }
 }
 @media only screen and (max-width: 480px) {

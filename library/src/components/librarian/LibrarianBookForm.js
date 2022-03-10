@@ -63,7 +63,9 @@ function LibrarianBookForm() {
         <form onSubmit={addBook}>
             <TextField type = "text" required value={bookData.title} onChange = {(e) => setBookData({...bookData,title:e.target.value})} label="Title"/>
             <TextField type = "text" required value={bookData.author} onChange = {(e) => setBookData({...bookData,author:e.target.value})} label="Author"/>
+            &nbsp;
             <FileBase type = "file" multiple = {false} onDone = {({base64}) => setBookData({...bookData,img: base64})}/>
+            &nbsp;
             <Button type = "submit" variant="contained" color="primary">add</Button>
         </form>
     </div>

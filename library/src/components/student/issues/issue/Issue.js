@@ -73,7 +73,8 @@ function Issue({issue}) {
               <td>{studentIssueDate}</td>
               <td>{dueDate}</td>
               <td>{returnDate}</td>
-              <td>{issue.issueFine}</td>            
+              <td>{issue.issueFine}</td>
+              <td>{issue.student.fineBal}</td>
               {issue.request && issue.issueStatus? 
                 <td>
                   {

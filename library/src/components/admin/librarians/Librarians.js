@@ -15,10 +15,11 @@ function Librarians() {
         <div className='librarian_search'>
             <div className='librarian_search_input'>
                 <SearchIcon/>
-                <input type = 'text' placeholder='search student' value={librarianSearch} onChange={(e) => setLibrarianSearch(e.target.value)}/>
+                <input type = 'text' placeholder='search librarian' value={librarianSearch} onChange={(e) => setLibrarianSearch(e.target.value)}/>
             </div>
         </div>
-      <table className='librarians_table'>
+        <div className='librarian_table'>
+        <table>
         <tr>
           <th>Librarian Name</th>
           <th>update</th>
@@ -45,6 +46,7 @@ function Librarians() {
             )
         }
       </table>
+        </div>
     </div>
   )
 }

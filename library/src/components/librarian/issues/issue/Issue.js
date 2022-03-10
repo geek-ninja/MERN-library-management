@@ -41,6 +41,7 @@ function Issue({issue,index}) {
             <td>{dueDate}</td>
             <td>{returnDate}</td>
             <td>{issue.issueFine}</td>
+            <td>{issue.student.fineBal}</td>
             {
                 !issue.issueStatus? 
                 <td><Button variant='contained' color='secondary' onClick={() => dispatch(updateIssue(issue._id))}>Accept</Button></td>

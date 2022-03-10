@@ -18,7 +18,8 @@ function Students() {
                 <input type = 'text' placeholder='search student id' value={studentSearch} onChange={(e) => setStudentSearch(e.target.value)}/>
             </div>
         </div>
-      <table className='students_table'>
+        <div className='students_table'>
+        <table>
         <tr>
           <th>Student Id</th>
           <th>Student Name</th>
@@ -45,6 +46,7 @@ function Students() {
             ))
         }
       </table>
+        </div>
     </div>
   )
 }
