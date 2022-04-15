@@ -1,3 +1,1 @@
 "# q-library" 
-
-![](front.png)
