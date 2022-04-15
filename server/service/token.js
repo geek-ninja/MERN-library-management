@@ -8,4 +8,10 @@ const createTokens = (user) => {
     return token
 }
 
-module.exports = {createTokens}
+const checkToken = (accessToken) => {
+    const validToken = jwt.verify(accessToken,process.env.JWT_KEY)
+    return validToken
+}
+
+module.exports = {createTokens,checkToken}
+

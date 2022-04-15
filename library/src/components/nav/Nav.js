@@ -46,7 +46,6 @@ function Nav() {
   return (
     <div className='nav'>
         <div className='nav_logo'>
-          <img src = 'https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2021/11/11/ml-6271-image011.png' alt='logo'/>
         </div>
         <div className='nav_user'>
           <h2>Welcome &nbsp;{`${user.login ? user.data.name:'to library'}`}</h2>

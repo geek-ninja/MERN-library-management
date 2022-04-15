@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const adminModel = require('../models/adminMode')
 const studentModel = require('../models/studentModel')
 const librarianModel = require('../models/librarianModel')
-const { createTokens } = require('../service/token')
+const { createTokens,checkToken } = require('../service/token')
 const bcrypt = require('bcrypt')
 
 module.exports.login = () => {
@@ -12,6 +12,8 @@ module.exports.login = () => {
         try {
             if(adminAuth){
                 const token = createTokens({login:true,data:adminAuth})
+                console.log(checkToken(token))
+                
                 res.status(200).json({
                     login:true,
                     message:'login successful',

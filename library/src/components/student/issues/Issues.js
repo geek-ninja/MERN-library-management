@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { filterIssue, getIssues } from '../../../Action/issueAction'
 import Issue from './issue/Issue'
 import { fetchIssues } from '../../../api/issue'
+import { CircularProgress } from '@material-ui/core'
 
 function Issues({currStudent}) {
 
@@ -14,6 +15,8 @@ function Issues({currStudent}) {
     fetchIssues().then((res) => setIssues(res.data))
   },[issues])
 
+  console.log(issues)
+  
   return (
     <div className='student_issues'>
       <h2>my requests</h2>
@@ -31,6 +34,12 @@ function Issues({currStudent}) {
           <th>issue status</th>
         </tr>
           {
+              !issues.length?
+              <div>
+                <h2>No Book Request yet ..</h2>
+                <CircularProgress/>
+              </div>
+              : 
               issues.map((issue) => (
                   currStudent._id === issue.student._id ? <Issue issue = {issue}/>:''
                 // <Issue issue = {issue} currStudent = {currStudent}/>

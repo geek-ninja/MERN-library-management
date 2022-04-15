@@ -49,12 +49,14 @@ function Home() {
   const navigate = useNavigate()
 
   const auth = useSelector((state) => state.auth)
+
   useEffect(() => {
 
     const token = JSON.parse(localStorage.getItem('token'))
     let userAuth = {}
     if(token !== null ){
       userAuth = jwt_decode(token)
+      console.log(userAuth)
     }
 
     if((auth.length > 0 && auth[0].data.authType === 'admin') || (userAuth.login && userAuth.data.authType === 'admin')){
@@ -98,10 +100,10 @@ function Home() {
       <div className='home_about'>
         <div className='home_desc'>
           <div className='home_desc_logo'>
-          <img src='https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2021/11/11/ml-6271-image011.png' alt='logo'/>
+
           </div>
           <div className='home_desc_text'>
-            <h1 data-aos = "fade-right" data-aos-duration="1000" data-aos-delay = "0">Q LIBRARY</h1>
+            <h1 data-aos = "fade-right" data-aos-duration="1000" data-aos-delay = "0">LIBRARY</h1>
             <h2 data-aos = "fade-right" data-aos-duration="1000" data-aos-delay = "800">EXPLORE BEYOND..!!</h2>
           </div>
         </div>
