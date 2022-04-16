@@ -40,4 +40,12 @@ create your own student and librarian .
 - Can settle up the balance
 - Can view/add/update/delete students
 
+## setting env for mongodb atlas
+
+```javascript
+PORT = 5000
+DATABASE_ACCESS = "mongodb+srv://{userName}:{password}@cluster0.jccv1.mongodb.net/qLibDb?retryWrites=true&w=majority"
+JWT_KEY = secret
+
+```
 
