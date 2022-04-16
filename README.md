@@ -17,11 +17,11 @@ In the project directory, you can run inside library(frontend) and server(backen
 ![](book_issue.png)
 ![](student.png)
 
-admin access:
-username : admin
-password : admin123
+set a default authentication for admin access from mongodb examplle:
+username : admin<br>
+password : admin123<br>
 create your own student and librarian .
-
+<br>
 - Admin
 - Can add/update/delete librarians
 - Can add/update/delete students
