@@ -17,7 +17,7 @@ In the project directory, you can run inside library(frontend) and server(backen
 ![](book_issue.png)
 ![](student.png)
 
-set a default authentication for admin access from mongodb examplle:
+set a default authentication for admin access from mongodb example:<br>
 username : admin<br>
 password : admin123<br>
 create your own student and librarian .
