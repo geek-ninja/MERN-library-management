@@ -36,7 +36,7 @@ function Issue({issue}) {
     const returnBook = (e) => {
       e.preventDefault()
       let f_issueDate = moment(issue.issueDate)
-      let f_returnDate = moment(new Date()).add(9,'d')
+      let f_returnDate = moment(new Date())
       let check_fine = f_returnDate.diff(f_issueDate,'days')
       if(check_fine > 7){
         window.alert('clear you due fines !!')
