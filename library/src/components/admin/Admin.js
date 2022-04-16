@@ -6,14 +6,25 @@ import AdminStudent from './AdminStudent'
 import Librarians from './librarians/Librarians'
 import Students from './students/Students'
 import './admin.css'
+import { useNavigate } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 
 function Admin() {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'))
+    const authUser = jwt_decode(token)
+    if(token === null || token === undefined || authUser.data.authType != 'admin'){
+      navigate('/')
+    }
+    else{
+      dispatch(getStudents())
+      dispatch(getLibrarians())
+    }
     // restiction with auther ....................... 
-    dispatch(getStudents())
-    dispatch(getLibrarians())
   },[dispatch])
 
 

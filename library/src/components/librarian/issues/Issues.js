@@ -1,14 +1,25 @@
 import { CircularProgress } from '@material-ui/core'
+import jwt_decode from 'jwt-decode'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { fetchIssues } from '../../../api/issue'
 import Issue from './issue/Issue'
 
 function Issues() {
 
     const [issues,setIssues] = useState([])
+    const navigate = useNavigate()
+
     useEffect(() => {
-      fetchIssues().then((res) => setIssues(res.data))
+      const token = JSON.parse(localStorage.getItem('token'))
+      const authUser = jwt_decode(token)
+      if(token === null || token === undefined || authUser.data.authType != 'librarian'){
+        navigate('/')
+      }
+      else{
+        fetchIssues().then((res) => setIssues(res.data))
+      }
     },[issues])
 
     // const issues = useSelector((state) => state.issue)

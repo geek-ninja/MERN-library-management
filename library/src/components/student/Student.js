@@ -18,11 +18,13 @@ function Student() {
   useEffect(() => {
     
     const token = JSON.parse(localStorage.getItem('token'))
-    if(token === null || token === undefined){
+    const userAuth = jwt_decode(token)
+    console.log(userAuth)
+
+    if(token === null || token === undefined || userAuth.data.authType != 'student'){
       navigate('/')
     }
     else{
-      const userAuth = jwt_decode(token)
       setStudent(userAuth.data)
       dispatch(getIssues())
       dispatch(getBooks())

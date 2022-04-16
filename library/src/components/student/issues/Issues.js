@@ -14,8 +14,6 @@ function Issues({currStudent}) {
   useEffect(() => {
     fetchIssues().then((res) => setIssues(res.data))
   },[issues])
-
-  console.log(issues)
   
   return (
     <div className='student_issues'>

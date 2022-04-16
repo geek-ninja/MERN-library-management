@@ -23,11 +23,12 @@ function Books() {
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('token'))
-        if(token === null || token === undefined){
+        const authUser = jwt_decode(token)
+        // console.log(authUser.data.authType)
+        if(token === null || token === undefined || authUser.data.authType != 'student'){
         navigate('/')
         }
         else{
-        const authUser = jwt_decode(token)
         setUser(authUser)
         }
         // fetchBooks().then((res) => setBooks(res.data))

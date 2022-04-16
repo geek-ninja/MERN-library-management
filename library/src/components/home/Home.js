@@ -56,7 +56,6 @@ function Home() {
     let userAuth = {}
     if(token !== null ){
       userAuth = jwt_decode(token)
-      console.log(userAuth)
     }
 
     if((auth.length > 0 && auth[0].data.authType === 'admin') || (userAuth.login && userAuth.data.authType === 'admin')){

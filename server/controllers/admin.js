@@ -12,8 +12,6 @@ module.exports.login = () => {
         try {
             if(adminAuth){
                 const token = createTokens({login:true,data:adminAuth})
-                console.log(checkToken(token))
-                
                 res.status(200).json({
                     login:true,
                     message:'login successful',

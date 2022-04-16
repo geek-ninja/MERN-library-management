@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getStudents } from '../../Action/adminAction'
 import { getBooks } from '../../Action/bookAction'
 import { getIssues } from '../../Action/issueAction'
@@ -13,16 +13,24 @@ import LibrarianBookForm from './LibrarianBookForm'
 import {FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
 import ListIcon from '@material-ui/icons/List';
 import CancelIcon from '@material-ui/icons/Cancel';
-
+import jwt_decode from "jwt-decode";
 function Librarian() {
   
   const [toggle,setToggle] = useState(false)
   const dispatch = useDispatch()
-  
+  const navigate = useNavigate()
+
   useEffect(() => {
-    dispatch(getBooks())
-    dispatch(getIssues())
-    dispatch(getStudents())
+    const token = JSON.parse(localStorage.getItem('token'))
+    const authUser = jwt_decode(token)
+    if(token === null || token === undefined || authUser.data.authType != 'librarian'){
+      navigate('/')
+    }
+    else{
+      dispatch(getBooks())
+      dispatch(getIssues())
+      dispatch(getStudents())
+    }
   },[dispatch])
 
   const dropDown = () => {
