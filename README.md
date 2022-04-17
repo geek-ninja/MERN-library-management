@@ -2,6 +2,11 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
+-Check out the App **https://my-mean-library.netlify.app/** <br>
+Authentication for admin access(try this):<br>
+username : admin<br>
+password : admin123<br>
+
 ## Available Scripts
 
 In the project directory, you can run inside library(frontend) and server(backend):
