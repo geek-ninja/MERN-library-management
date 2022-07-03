@@ -33,23 +33,23 @@ function Issue({issue,index}) {
         // ''
         // :
         <tr>
-            <td>{issue.book.title}</td>
-            <td>{issue.book.author}</td>
-            <td>{issue.student.name}</td>
-            <td>{issue.student.roll}</td>
+            <td>{issue?.book?.title}</td>
+            <td>{issue?.book?.author}</td>
+            <td>{issue?.student?.name}</td>
+            <td>{issue.student?.roll}</td>
             <td>{studentIssueDate}</td>
             <td>{dueDate}</td>
             <td>{returnDate}</td>
-            <td>{issue.issueFine}</td>
-            <td>{issue.student.fineBal}</td>
+            <td>{issue?.issueFine}</td>
+            <td>{issue?.student?.fineBal}</td>
             {
-                !issue.issueStatus? 
-                <td><Button variant='contained' color='secondary' onClick={() => dispatch(updateIssue(issue._id))}>Accept</Button></td>
+                !issue?.issueStatus? 
+                <td><Button variant='contained' color='secondary' onClick={() => dispatch(updateIssue(issue?._id))}>Accept</Button></td>
                 :
                 <td><Button variant='contained' color='primary'>Accepted</Button></td>
             }
             {
-                issue.issueFine > 0?<td><Button variant='contained' color='secondary' onClick={clearFine}>Clear Fine</Button></td>:<td><Button variant='contained' color='primary'>NIL</Button></td>
+                issue?.issueFine > 0?<td><Button variant='contained' color='secondary' onClick={clearFine}>Clear Fine</Button></td>:<td><Button variant='contained' color='primary'>NIL</Button></td>
             }
         </tr>
   )
