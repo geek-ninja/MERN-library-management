@@ -32,14 +32,14 @@ function Issues({currStudent}) {
           <th>issue status</th>
         </tr>
           {
-              !issues.length?
+              !issues?.length?
               <div>
                 <h2>No Book Request yet ..</h2>
                 <CircularProgress/>
               </div>
               : 
               issues.map((issue) => (
-                  currStudent._id === issue.student._id ? <Issue issue = {issue}/>:''
+                  currStudent?._id === issue?.student?._id ? <Issue issue = {issue}/>:''
                 // <Issue issue = {issue} currStudent = {currStudent}/>
               ))
           }
