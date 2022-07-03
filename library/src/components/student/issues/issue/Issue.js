@@ -18,12 +18,12 @@ function Issue({issue}) {
     const [checkFine,setCheckFine] = useState(false)
 
     useEffect(() => {
-      if((issue.issueDate !== undefined) && (issue.issueDate !== null)){
-        setStudentIssueDate(moment(issue.issueDate).format('DD-MM-YYYY'))
-        setDueDate(moment(issue.issueDate).add(7,'d').format('DD-MM-YYYY'))
+      if((issue?.issueDate !== undefined) && (issue?.issueDate !== null)){
+        setStudentIssueDate(moment(issue?.issueDate).format('DD-MM-YYYY'))
+        setDueDate(moment(issue?.issueDate).add(7,'d').format('DD-MM-YYYY'))
       }
-      if((issue.returnDate !== undefined) && (issue.returnDate)){
-        setReturnDate(moment(issue.returnDate).format('DD-MM-YYYY'))
+      if((issue?.returnDate !== undefined) && (issue?.returnDate)){
+        setReturnDate(moment(issue?.returnDate).format('DD-MM-YYYY'))
       }
     },[issue])
 
@@ -36,29 +36,29 @@ function Issue({issue}) {
     const returnBook = (e) => {
       e.preventDefault()
       let f_issueDate = moment(issue.issueDate)
-      let f_returnDate = moment(new Date())
+      let f_returnDate = moment(new Date()).add('days',9)
       let check_fine = f_returnDate.diff(f_issueDate,'days')
       if(check_fine > 7){
-        window.alert('clear you due fines !!')
+        window.alert('clear your due fines !!')
         setCheckFine(true)
         const studentFine = {
           fineBal:(check_fine - 7)*2
 
         }
-        dispatch(getStudentFine(issue.student._id,studentFine))
-        dispatch(updateIssueFine(issue._id,studentFine))
-        dispatch(updateIssueReturnDate(issue._id))
+        dispatch(getStudentFine(issue?.student?._id,studentFine))
+        dispatch(updateIssueFine(issue?._id,studentFine))
+        dispatch(updateIssueReturnDate(issue?._id))
       }
       else{
-        dispatch(updateIssueReturned(issue._id))
-        dispatch(bookQuantity(issue.book._id))
+        dispatch(updateIssueReturned(issue?._id))
+        dispatch(bookQuantity(issue?.book?._id))
       }
     }
     
     const cancelBook = (e) => {
       e.preventDefault()
-      dispatch(deleteIssue(issue._id))
-      dispatch(bookQuantity(issue.book._id))
+      dispatch(deleteIssue(issue?._id))
+      dispatch(bookQuantity(issue?.book?._id))
     }
 
   return (
@@ -66,16 +66,16 @@ function Issue({issue}) {
 
             issue.returned ?'':
             <tr>
-              <td>{issue.book.title}</td>
-              <td>{issue.book.author}</td>
-              <td>{issue.student.name}</td>
-              <td>{issue.student.roll}</td>
+              <td>{issue?.book?.title}</td>
+              <td>{issue?.book?.author}</td>
+              <td>{issue?.student?.name}</td>
+              <td>{issue?.student?.roll}</td>
               <td>{studentIssueDate}</td>
               <td>{dueDate}</td>
               <td>{returnDate}</td>
-              <td>{issue.issueFine}</td>
-              <td>{issue.student.fineBal}</td>
-              {issue.request && issue.issueStatus? 
+              <td>{issue?.issueFine}</td>
+              <td>{issue?.student?.fineBal}</td>
+              {issue?.request && issue?.issueStatus? 
                 <td>
                   {
                     checkFine ? 
