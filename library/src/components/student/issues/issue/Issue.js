@@ -35,7 +35,7 @@ function Issue({issue}) {
 
     const returnBook = (e) => {
       e.preventDefault()
-      let f_issueDate = moment(issue.issueDate)
+      let f_issueDate = moment(issue?.issueDate)
       let f_returnDate = moment(new Date()).add('days',9)
       let check_fine = f_returnDate.diff(f_issueDate,'days')
       if(check_fine > 7){
@@ -64,7 +64,7 @@ function Issue({issue}) {
   return (
 
 
-            issue.returned ?'':
+            issue?.returned ?'':
             <tr>
               <td>{issue?.book?.title}</td>
               <td>{issue?.book?.author}</td>
